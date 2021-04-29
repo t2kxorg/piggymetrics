@@ -6,7 +6,7 @@ env:
   SERVICE_NAME: <service instance name>
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
 
@@ -20,13 +20,7 @@ jobs:
     - name: maven build, clean
       run: |
         mvn clean package -DskipTests
-  
-  deploy:
-    name: Deploy application to Spring Cloud
-    needs: build
-    runs-on: ubuntu-latest
-    
-    steps:
+
     - name: Azure Login
       uses: azure/login@v1
       with:
